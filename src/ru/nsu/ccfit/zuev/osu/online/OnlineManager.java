@@ -28,7 +28,7 @@ import ru.nsu.ccfit.zuev.osu.online.PostBuilder.RequestException;
 public class OnlineManager {
     public static final String hostname = "paytouse.github.io";
     public static final String endpoint = "https://" + hostname + "/api/";
-    private static final String onlineVersion = "29";
+    private static final String onlineVersion = "relax";
 
     public static final OkHttpClient client = new OkHttpClient();
 
