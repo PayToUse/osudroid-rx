@@ -2,9 +2,11 @@ name: Android CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches-ignore:
+      - 'rx-branch'
   pull_request:
-    branches: [ "master" ]
+    branches-ignore:
+      - 'rx-branch'
 
 jobs:
   build:
