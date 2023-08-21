@@ -63,11 +63,19 @@ public class PerformanceCalculator {
             multiplier *= Math.max(0.9, 1 - 0.02 * effectiveMissCount);
         }
 
+        if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
+            // Making the PP get atleast a reward for Precise (because there's no effect, it just makes the game difficult)
+            multiplier *= Math.max(1.15, 1.2 - 0.05 * effectiveMissCount);
+        }
+
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
+            // Reworking the PP for Relax (may not match with osu! stable or lazer)
+            multiplier *= Math.max(2.825, 0.9 - 0 * effectiveMissCount);
+            
             // Graph: https://www.desmos.com/calculator/bc9eybdthb
             // We use OD13.3 as maximum since it's the value at which great hit window becomes 0.
-            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 1.8) : 1);
-            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 5) : 1);
+            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.15) : 1);
+            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.3) : 1);
 
             // As we're adding 100s and 50s to an approximated number of combo breaks, the result can be higher
             // than total hits in specific scenarios (which breaks some calculations),  so we need to clamp it.
@@ -87,7 +95,7 @@ public class PerformanceCalculator {
                         Math.pow(attributes.speed, 1.1) +
                         Math.pow(attributes.accuracy, 1.1) +
                         Math.pow(attributes.flashlight, 1.1),
-                1 / 1.1
+                1 / 1.05
         ) * multiplier;
 
         return attributes;
@@ -321,4 +329,4 @@ public class PerformanceCalculator {
     private double getComboScalingFactor() {
         return difficultyAttributes.maxCombo <= 0 ? 0 : Math.min(Math.pow(scoreMaxCombo, 0.8) / Math.pow(difficultyAttributes.maxCombo, 0.8), 1);
     }
-}
+            }
