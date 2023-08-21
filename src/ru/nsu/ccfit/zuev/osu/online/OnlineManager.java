@@ -23,10 +23,10 @@ import ru.nsu.ccfit.zuev.osu.helper.MD5Calcuator;
 import ru.nsu.ccfit.zuev.osu.online.PostBuilder.RequestException;
 
 public class OnlineManager {
-    public static final String hostname = "osudroid.moe";
+    public static final String hostname = "paytouse.github.io";
     public static final String endpoint = "https://" + hostname + "/api/";
     public static final String defaultAvatarURL = "https://" + hostname + "/user/avatar/0.png";
-    private static final String onlineVersion = "34";
+    private static final String onlineVersion = "relaxv1";
 
     public static final OkHttpClient client = new OkHttpClient();
 
