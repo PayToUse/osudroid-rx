@@ -1,6 +1,6 @@
 package ru.nsu.ccfit.zuev.osu.game.cursor.trail;
 
-    import org.anddev.andengine.entity.particle.ParticleSystem;
+import org.anddev.andengine.entity.particle.ParticleSystem;
 import org.anddev.andengine.entity.particle.emitter.PointParticleEmitter;
 import org.anddev.andengine.entity.particle.initializer.ScaleInitializer;
 import org.anddev.andengine.entity.particle.modifier.AlphaModifier;
@@ -9,22 +9,17 @@ import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class CursorTrail extends ParticleSystem {
+import ru.nsu.ccfit.zuev.osu.Config;
+import ru.nsu.ccfit.zuev.osu.game.cursor.main.CursorSprite;
 
+public class CursorTrail extends ParticleSystem {
     public CursorTrail(
             PointParticleEmitter emitter,
-            int minRate,
-            int maxRate, int max,
+            int spawnRate,
             float trailSize,
             TextureRegion pTextureRegion
     ) {
-        super(
-                emitter,
-                minRate,
-                maxRate,
-                max,
-                pTextureRegion
-        );
+        super(emitter, spawnRate, spawnRate, spawnRate, pTextureRegion);
 
         fadeOut();
         setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
@@ -33,9 +28,7 @@ public class CursorTrail extends ParticleSystem {
     }
 
     private void fadeOut() {
-        float lifeTime = 0.1125f;
-
-        addParticleModifier(new ExpireModifier(lifeTime));
-        addParticleModifier(new AlphaModifier(1f, 0f, 1f, 1f));
+        addParticleModifier(new ExpireModifier(0.10f));
+        addParticleModifier(new AlphaModifier(1.0f, 0.0f, 0f, 0.10f));
     }
 }
