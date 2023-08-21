@@ -24,7 +24,7 @@ please take note that this is not akatsuki, but on android. i made this project 
 
 App releases below v1.3 are based on osu!droid 1.6.8, v1.4 is currently being developed and is being based with 1.7, please wait and use your patience as we develop this, thank you!
 
-As of August 21, 2023, the devs of this custom build will go on hiatus as the build seemed to fail alot, but we may not know when will the next version release.
+As of August 22, 2023, the devs of this custom build had changed their minds, so likely the release will not be delayed.
 
 ## Release Table
 | Version    | Base Version |
@@ -42,7 +42,7 @@ to test the latest debug builds before the release, please [click here](https://
 
 ## Contributing
 
-Any contributions are free, and it's updated along with the debug `.apk` once done, don't worry
+Any contributions are free, and it's updated along with the debug `.apk` once a commit has been done, so don't worry
 
 ## License
 
