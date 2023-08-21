@@ -365,4 +365,9 @@
 
     <string name="opt_shrink_playfield_beside_title">Shrink playfield beside</string>
     <string name="opt_shrink_playfield_beside_summary">Shrink playfield beside (experimental, may not work)</string>
+
+    <!--Video support-->
+    <string name="opt_delete_unsupported_videos_title">Delete unsupported videos</string>
+    <string name="opt_delete_unsupported_videos_summary">Delete videos with unsupported formats (.avi and .flv)</string>
+ 
 </resources> 
