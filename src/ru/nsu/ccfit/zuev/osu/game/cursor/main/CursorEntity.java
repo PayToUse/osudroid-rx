@@ -7,9 +7,9 @@ import org.anddev.andengine.entity.scene.Scene;
 import org.anddev.andengine.opengl.texture.region.TextureRegion;
 
 import ru.nsu.ccfit.zuev.osu.Config;
+import ru.nsu.ccfit.zuev.osu.GlobalManager;
 import ru.nsu.ccfit.zuev.osu.ResourceManager;
 import ru.nsu.ccfit.zuev.osu.game.cursor.trail.CursorTrail;
-
 
 public class CursorEntity extends Entity {
     protected final CursorSprite cursorSprite;
@@ -28,12 +28,10 @@ public class CursorEntity extends Entity {
             particleOffsetX = -trailTex.getWidth() / 2f;
             particleOffsetY = -trailTex.getHeight() / 2f;
 
-
+            var spawnRate = (int) GlobalManager.getInstance().getMainActivity().getRefreshRate() * 2;
 
             emitter = new PointParticleEmitter(particleOffsetX, particleOffsetY);
-            particles = new CursorTrail(
-                    emitter, 180, 180, 180, cursorSprite.baseSize, trailTex
-            );
+            particles = new CursorTrail(emitter, spawnRate, cursorSprite.baseSize, trailTex);
         }
 
         attachChild(cursorSprite);
@@ -57,7 +55,6 @@ public class CursorEntity extends Entity {
         }
         super.onManagedUpdate(pSecondsElapsed);
     }
-
 
     public void attachToScene(Scene fgScene) {
         if (particles != null) {
