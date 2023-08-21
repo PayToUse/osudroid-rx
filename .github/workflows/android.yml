@@ -2,9 +2,11 @@ name: Android CI
 
 on:
   push:
-    branches: [ master ]
+    branches-ignore:
+      - 'flashlight-experiment'
   pull_request:
-    branches: [ master ]
+    branches-ignore:
+      - 'flashlight-experiment'
 
 jobs:
   build:
