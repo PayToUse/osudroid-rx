@@ -214,7 +214,7 @@ public class MainScene implements IUpdateHandler {
 
         final Text yasonline = new Text(720, 530, ResourceManager
                 .getInstance().getFont("font"),
-                "            Global Ranking\n   Provided by iBancho") {
+                "Based on osu!droid 1.7\n     Global Ranking\n   Provided by iBancho") {
 
             @Override
             public boolean onAreaTouched(final TouchEvent pSceneTouchEvent,
