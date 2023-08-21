@@ -17,5 +17,6 @@ Most of the commits are from the osu!droid developers, since i have to try to wo
 - Added a feature that when long pressing the random button, it will now show the last 10 beatmaps you recently played.
 - Added video support, turning on this feature might give some lag as it's a video after all, *nonsense*
 
-# Changes
+# Changes and Fixes
 - Fixed a bunch of game crashes, and bugs.
+- Changed the way the cursor behaves, *matches with osu!stable and lazer*
