@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="bg_quality_names">
+        <item>Ultra</item>
         <item>High</item>
         <item>Medium</item>
-        <item>Low</item>
-        <item>Disabled</item>
+	<item>Low</item>
+	<item>Lower</item>
+	<item>Much Lower</item>
+	<item>Insanely Lower</item>
+	<item>Lowest</item>
+        <item>Potato Mode</item>
     </string-array>
     <string-array name="bg_quality_values">
         <item>1</item>
         <item>2</item>
-        <item>4</item>
-        <item>0</item>
+        <item>3</item>
+	<item>4</item>
+	<item>6</item>
+	<item>8</item>
+	<item>10</item>
+	<item>12</item>
+        <item>14</item>
     </string-array>
     <!-- <string-array name="bg_brightness_names">
         <item>100%</item>
@@ -36,45 +46,6 @@
         <item>2</item>
         <item>0</item>
     </string-array>
-
-    <!--Multiplayer-->
-
-    <string-array name="team_versus_names">
-        <item>Head to Head</item>
-        <item>Team vs Team</item>
-    </string-array>
-
-    <string-array name="team_versus_values">
-        <item>0</item>
-        <item>1</item>
-    </string-array>
-
-    <string-array name="win_condition_names">
-        <item>Score V1</item>
-        <item>Accuracy</item>
-        <item>Max combo</item>
-        <item>Score V2</item>
-    </string-array>
-
-    <string-array name="win_condition_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array>
-
-    <string-array name="team_names">
-        <item>Red</item>
-        <item>Blue</item>
-    </string-array>
-
-    <string-array name="team_values">
-        <item>0</item>
-        <item>1</item>
-    </string-array>
-
-    <!--End multiplayer-->
-
     <string-array name="spinner_style_names">
         <item>Modern</item>
         <item>Classical</item>
@@ -102,6 +73,12 @@
         <item>90%</item>
         <item>85%</item>
         <item>80%</item>
+	<item>75%</item>
+	<item>70%</item>
+	<item>65%</item>
+	<item>60%</item>
+	<item>55%</item>
+	<item>50%</item>
     </string-array>
     <string-array name="set_playfield_values">
         <item>100</item>
@@ -109,6 +86,12 @@
         <item>90</item>
         <item>85</item>
         <item>80</item>
+	<item>75</item>
+	<item>70</item>
+	<item>65</item>
+	<item>60</item>
+        <item>55</item>
+	<item>50</item>
     </string-array>
     <string name="opt_main">Settings</string>
 
@@ -377,8 +360,9 @@
     <string name="opt_display_realtime_pp_counter_title">Display real-time PP counter</string>
     <string name="opt_display_realtime_pp_counter_summary">Displays a real-time PP counter during gameplay. May increase loading time significantly, especially in long beatmaps</string>
 
-    <!--Video support-->
-    <string name="opt_delete_unsupported_videos_title">Delete unsupported videos</string>
-    <string name="opt_delete_unsupported_videos_summary">Delete videos with unsupported formats (.avi and .flv)</string>
+    <string name="opt_use_hd_assets_title">Use HD (@2x) assets</string>
+    <string name="opt_use_hd_assets_summary">Use high definition assets if skin contains those (may cause lag, experimental)</string>
 
-</resources>
+    <string name="opt_shrink_playfield_beside_title">Shrink playfield beside</string>
+    <string name="opt_shrink_playfield_beside_summary">Shrink playfield beside (experimental, may not work)</string>
+</resources> 
