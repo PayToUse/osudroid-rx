@@ -88,7 +88,7 @@ android {
 
     buildTypes {
         debug {
-            resValue "string", "app_name", "osu!droid-debug"
+            resValue "string", "app_name", "osudroid!relax-debug"
             applicationIdSuffix '.debug'
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
@@ -96,7 +96,7 @@ android {
         }
 
         release {
-            resValue "string", "app_name", "osu!droid"
+            resValue "string", "app_name", "osudroid!relax"
             zipAlignEnabled true
 //            minifyEnabled true
 //            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.cfg', 'proguard-kotlin.pro'
@@ -108,11 +108,10 @@ android {
 
         pre_release {
             matchingFallbacks = ['release']
-            resValue "string", "app_name", "osu!droid"
+            resValue "string", "app_name", "osudroid!relax-pre-release"
             zipAlignEnabled true
 //            minifyEnabled true
-//            debuggable true
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.cfg', 'proguard-kotlin.pro'
+//            debuggableosudroid!            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard.cfg', 'proguard-kotlin.pro'
             signingConfig signingConfigs.release
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
