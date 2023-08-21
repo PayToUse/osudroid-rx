@@ -24,6 +24,17 @@ please take note that this is not akatsuki, but on android. i made this project 
 
 App releases below v1.3 are based on osu!droid 1.6.8, v1.4 is currently being developed and is being based with 1.7, please wait and use your patience as we develop this, thank you!
 
+As of August 21, 2023, the devs of this custom build will go on hiatus as the build seemed to fail alot, but we may not know when will the next version release.
+
+## Release Table
+| Version    | Base Version |
+|------------|------------|
+| v1.0 | 1.6.8 |
+| v1.1 | 1.6.8 |
+| v1.2 | 1.6.8 |
+| v1.3 | 1.6.8 |
+| v1.4 | 1.7 |
+
 ## Status
 osudroid!relax is currently in development, it's updates are up to date with the osu!droid github repository, *except for the server*
 
