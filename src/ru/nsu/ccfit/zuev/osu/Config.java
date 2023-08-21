@@ -78,7 +78,9 @@ public class Config {
         displayRealTimePPCounter,
         useNightcoreOnMultiplayer,
         videoEnabled,
-        deleteUnsupportedVideos;
+        deleteUnsupportedVideos,
+        shrinkPlayfieldBeside,
+        useHdAssets;
 
     private static int RES_WIDTH,
         RES_HEIGHT,
