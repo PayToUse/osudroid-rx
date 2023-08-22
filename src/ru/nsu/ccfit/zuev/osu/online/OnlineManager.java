@@ -23,7 +23,7 @@ import ru.nsu.ccfit.zuev.osu.helper.MD5Calcuator;
 import ru.nsu.ccfit.zuev.osu.online.PostBuilder.RequestException;
 
 public class OnlineManager {
-    public static final String hostname = "192.168.1.9";
+    public static final String hostname = "192.168.1.4";
     public static final String endpoint = "https://" + hostname + "/api/";
     public static final String defaultAvatarURL = "https://" + hostname + "/user/avatar/0.png";
     private static final String onlineVersion = "727";
