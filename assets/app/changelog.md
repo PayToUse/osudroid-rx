@@ -1,4 +1,4 @@
-# osudroid!relax v1.4-pre1 update (August 22, 2023)
+# osudroid!relax v1.4 update (August 22, 2023)
 
 With this update, this changes some behaviors of the game, alongside the PP rework i've been doing.
 
@@ -23,3 +23,4 @@ Most of the commits are from the osu!droid developers, since i have to try to wo
 - Changed the way the cursor behaves, *matches with osu!stable and lazer*
 - Reworked PP once again (buffed the multi by adding by 0.025x)
 - Changed the texts at the start, *now shows the game version and what it's based on*
+- Changed the server version, *since it crashes in the past few debug updates due to the connection being refused*
