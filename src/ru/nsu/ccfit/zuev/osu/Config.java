@@ -717,7 +717,7 @@ public class Config {
         return useHdAssets;
     }
 
-    public static void setUseHsAssets(boolean useHdAssets) {
+    public static void setUseHdAssets(boolean useHdAssets) {
         Config.useHdAssets = useHdAssets;
     }
 
