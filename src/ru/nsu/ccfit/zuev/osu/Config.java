@@ -713,6 +713,14 @@ public class Config {
         Config.shrinkPlayfieldBeside = shrinkPlayfieldBeside;
     }
 
+    public static boolean isUseHdAssets() {
+        return useHdAssets;
+    }
+
+    public static void setShrinkPlayfieldBeside(boolean useHdAssets) {
+        Config.useHdAssets = useHdAssets;
+    }
+
     public static boolean isHideReplayMarquee() {
         return hideReplayMarquee;
     }
