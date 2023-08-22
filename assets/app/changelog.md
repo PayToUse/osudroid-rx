@@ -1,4 +1,4 @@
-# osudroid!relax v1.4-pre1 update
+# osudroid!relax v1.4-pre1 update (August 22, 2023)
 
 With this update, this changes some behaviors of the game, alongside the PP rework i've been doing.
 
@@ -16,7 +16,10 @@ Most of the commits are from the osu!droid developers, since i have to try to wo
 - Added multiplayer, but in the build, it will remain unavailable.
 - Added a feature that when long pressing the random button, it will now show the last 10 beatmaps you recently played.
 - Added video support, turning on this feature might give some lag as it's a video after all, *nonsense*
+- Added experimental functions to experimental settings
 
 # Changes and Fixes
 - Fixed a bunch of game crashes, and bugs.
 - Changed the way the cursor behaves, *matches with osu!stable and lazer*
+- Reworked PP once again (buffed the multi by adding by 0.025x)
+- Changed the texts at the start, *now shows the game version and what it's based on*
