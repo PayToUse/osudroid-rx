@@ -24,11 +24,6 @@ jobs:
       run: chmod +x gradlew
     - name: Assemble the Release .apk (if possible)
       run: ./gradlew assembleRelease
-    - name: Create and Release the Release artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: osudroid-rx-release
-        path: build/outputs/apk/release/app-release.apk
     - name: Assemble the Debug .apk
       run: ./gradlew assembleDebug
     - name: Create and Release the Debug artifact
