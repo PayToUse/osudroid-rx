@@ -713,7 +713,7 @@ public class Config {
         return shrinkPlayfieldBeside;
     }
 
-    public static void setShrinkPlayfieldDownwards(boolean shrinkPlayfieldBeside) {
+    public static void setShrinkPlayfieldBeside(boolean shrinkPlayfieldBeside) {
         Config.shrinkPlayfieldBeside = shrinkPlayfieldBeside;
     }
 
