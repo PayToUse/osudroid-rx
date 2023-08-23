@@ -56,8 +56,12 @@ data class Room(
         /**
          * The room status.
          */
-        var status: RoomStatus? = null
+        var status: RoomStatus? = null,
 
+        /**
+         * The speed multiplier.
+         */
+        var speedMultiplier: Double
 )
 {
     /**
@@ -79,6 +83,17 @@ data class Room(
      * The current beatmap.
      */
     var beatmap: RoomBeatmap? = null
+        set(value) {
+            if (value != null)
+                previousBeatmap = value
+
+            field = value
+        }
+
+    /**
+     * The previous beatmap.
+     */
+    var previousBeatmap: RoomBeatmap? = null
 
     /**
      * Besides [players] it provides an array trimmed with no empty slots.
