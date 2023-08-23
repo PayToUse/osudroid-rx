@@ -66,6 +66,11 @@ public class PerformanceCalculator {
         if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
             // Making the PP get atleast a reward for Precise (because there's no effect, it just makes the game difficult)
             multiplier *= Math.max(1.15, 1.2 - 0.05 * effectiveMissCount);
+
+            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.15) : 1);
+            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.3) : 1);
+            
+            effectiveMissCount = Math.min(effectiveMissCount + countOk * okMultiplier + countMeh * mehMultiplier, getTotalHits());
         }
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
