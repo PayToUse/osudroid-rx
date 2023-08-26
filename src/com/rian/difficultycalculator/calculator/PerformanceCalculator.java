@@ -75,7 +75,7 @@ public class PerformanceCalculator {
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
             // Reworking the PP for Relax (may not match with osu! stable or lazer)
-            multiplier *= Math.max(2.825, 0.9 - 0 * effectiveMissCount);
+            multiplier *= Math.max(2.825, 1.3 - 0.5 * effectiveMissCount);
             
             // Graph: https://www.desmos.com/calculator/bc9eybdthb
             // We use OD13.3 as maximum since it's the value at which great hit window becomes 0.
@@ -101,7 +101,7 @@ public class PerformanceCalculator {
                         Math.pow(attributes.accuracy, 1.1) +
                         Math.pow(attributes.flashlight, 1.1),
                 1 / 1.05
-        ) * multiplier;
+        ) * (multiplier * 1.1);
 
         return attributes;
     }
@@ -124,7 +124,7 @@ public class PerformanceCalculator {
      * Calculates the accuracy of the parameters.
      */
     private double getAccuracy() {
-        return (double) (countGreat * 6 + countOk * 2 + countMeh) / (getTotalHits() * 6);
+        return (double) (countGreat * 6.5 + countOk * 2.25 + countMeh) / (getTotalHits() * 6);
     }
 
     /**
@@ -159,14 +159,14 @@ public class PerformanceCalculator {
         // Longer maps are worth more
         double lengthBonus = 0.95 + 0.4 * Math.min(1, getTotalHits() / 2000d);
         if (getTotalHits() > 2000) {
-            lengthBonus += Math.log10(getTotalHits() / 2000d) * 0.5;
+            lengthBonus += Math.log10(getTotalHits() / 2000d) * 0.65;
         }
 
         aimValue *= lengthBonus;
 
         if (effectiveMissCount > 0) {
             // Penalize misses by assessing # of misses relative to the total # of objects. Default a 3% reduction for any # of misses.
-            aimValue *= 0.97 * Math.pow(1 - Math.pow(effectiveMissCount / getTotalHits(), 0.775), effectiveMissCount);
+            aimValue *= 1 * Math.pow(1 - Math.pow(effectiveMissCount / getTotalHits(), 0.8), effectiveMissCount);
         }
 
         aimValue *= getComboScalingFactor();
@@ -175,13 +175,13 @@ public class PerformanceCalculator {
             // AR scaling
             double approachRateFactor = 0;
             if (difficultyAttributes.approachRate > 10.33) {
-                approachRateFactor += 0.3 * (difficultyAttributes.approachRate - 10.33);
+                approachRateFactor += 0.325 * (difficultyAttributes.approachRate - 10.33);
             } else if (difficultyAttributes.approachRate < 8) {
                 approachRateFactor += 0.05 * (8 - difficultyAttributes.approachRate);
             }
 
             // Buff for longer maps with high AR.
-            aimValue *= 1 + approachRateFactor * lengthBonus;
+            aimValue *= 1 + (approachRateFactor * 1.1) * lengthBonus;
         }
 
         // We want to give more reward for lower AR when it comes to aim and HD. This nerfs high AR and buffs lower AR.
@@ -190,7 +190,7 @@ public class PerformanceCalculator {
         }
 
         // We assume 15% of sliders in a map are difficult since there's no way to tell from the performance calculator.
-        double estimateDifficultSliders = difficultyAttributes.sliderCount * 0.15;
+        double estimateDifficultSliders = difficultyAttributes.sliderCount * 0.175;
 
         if (estimateDifficultSliders > 0) {
             double estimateSliderEndsDropped = MathUtils.clamp(Math.min(countOk + countMeh + countMiss, difficultyAttributes.maxCombo - scoreMaxCombo), 0, estimateDifficultSliders);
