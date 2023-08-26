@@ -184,6 +184,18 @@ public class PerformanceCalculator {
             aimValue *= 1 + (approachRateFactor * 1.1) * lengthBonus;
         }
 
+        if (!difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
+            // AR scaling
+            double approachRateFactor = 0;
+            if (difficultyAttributes.approachRate > 10.33) {
+                approachRateFactor += 0.4 * (difficultyAttributes.approachRate - 10.33);
+            } else if (difficultyAttributes.approachRate < 8) {
+                approachRateFactor += 0.075 * (8 - difficultyAttributes.approachRate);
+            }
+
+            aimValue *= 1.1 + (approachRateFactor * 1.1) * (lengthBonus * 0.05);
+        }
+
         // We want to give more reward for lower AR when it comes to aim and HD. This nerfs high AR and buffs lower AR.
         if (difficultyAttributes.mods.contains(GameMod.MOD_HIDDEN)) {
             aimValue *= 1 + 0.04 * (12 - difficultyAttributes.approachRate);
