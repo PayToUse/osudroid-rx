@@ -1,4 +1,4 @@
-# osudroid!relax v1.5 update (August 27, 2023)
+# osudroid!relax v1.5 update (August 28, 2023)
 
 In this update, this features a pp rework, alongside the bug fixes and crashes.
 
