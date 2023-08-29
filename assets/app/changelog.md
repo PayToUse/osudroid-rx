@@ -1,9 +1,11 @@
-# osudroid!relax v1.5 update (August 28, 2023)
+# osudroid!relax v1.5 update (August 29, 2023)
 
 In this update, this features a pp rework, alongside the bug fixes and crashes.
 
 # Note
 Due to Typhoon Saola, the next release may be delayed due to it's battering across the Luzon island in the Philippines.
+
+To record the replay, please use the original build as this build corrupts the replay after playing a certain beatmap
 
 # Changes
 - Reworked PP, this change may debuff the calculation due to it's value being drastically high
