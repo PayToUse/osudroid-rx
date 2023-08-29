@@ -3,6 +3,12 @@
 ![logo](https://media.discordapp.net/attachments/792900587887919114/1127174982754107483/Untitled164_20230708175009.png)
 [![Official International Discord](https://discordapp.com/api/guilds/774138960430759958/widget.png?style=shield)](https://discord.gg/bppaHBZXFB)
 [![Android CI](https://github.com/PayToUse/osudroid-rx/workflows/Android%20CI/badge.svg?branch=master)](https://github.com/PayToUse/osudroid-rx/actions?query=workflow%3A"Android+CI")
+![GitHub repo size](https://img.shields.io/github/repo-size/PayToUse/osudroid-rx?style=flat-square&label=Repository%20Size)
+![GitHub contributors](https://img.shields.io/github/contributors/PayToUse/osudroid-rx?style=flat-square&label=Project%20contributors)
+![GitHub Discussions](https://img.shields.io/github/discussions/PayToUse/osudroid-rx?style=flat-square&label=Discussions)
+![GitHub forks](https://img.shields.io/github/forks/PayToUse/osudroid-rx?style=flat-square&label=Project%20forks)
+![GitHub issues](https://img.shields.io/github/issues/PayToUse/osudroid-rx?style=flat-square&label=Project%20issues)
+
 
 A custom osu!droid build for relax players out there.
 
