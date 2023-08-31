@@ -65,12 +65,7 @@ public class PerformanceCalculator {
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
             // Making the PP get atleast a reward for Precise (because there's no effect, it just makes the game difficult)
-            multiplier *= Math.max(1.15, 1.2 - 0.05 * effectiveMissCount);
-
-            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.15) : 1);
-            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.3) : 1);
-            
-            effectiveMissCount = Math.min(effectiveMissCount + countOk * okMultiplier + countMeh * mehMultiplier, getTotalHits());
+            multiplier *= 1.175;
         }
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
@@ -79,8 +74,8 @@ public class PerformanceCalculator {
             
             // Graph: https://www.desmos.com/calculator/bc9eybdthb
             // We use OD13.3 as maximum since it's the value at which great hit window becomes 0.
-            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.05) : 1);
-            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.1) : 1);
+            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.0125) : 1);
+            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.025) : 1);
 
             // As we're adding 100s and 50s to an approximated number of combo breaks, the result can be higher
             // than total hits in specific scenarios (which breaks some calculations),  so we need to clamp it.
@@ -100,7 +95,7 @@ public class PerformanceCalculator {
                         Math.pow(attributes.speed, 1.1) +
                         Math.pow(attributes.accuracy, 1.1) +
                         Math.pow(attributes.flashlight, 1.1),
-                1 / 1.05
+                1 / 1.075
         ) * (multiplier * 1.1);
 
         return attributes;
@@ -124,7 +119,7 @@ public class PerformanceCalculator {
      * Calculates the accuracy of the parameters.
      */
     private double getAccuracy() {
-        return (double) (countGreat * 6.5 + countOk * 2.25 + countMeh) / (getTotalHits() * 6);
+        return (double) (countGreat * 6.6 + countOk * 2.275 + countMeh) / (getTotalHits() * 6);
     }
 
     /**
@@ -181,19 +176,19 @@ public class PerformanceCalculator {
             }
 
             // Buff for longer maps with high AR.
-            aimValue *= 1 + (approachRateFactor * 1.1) * lengthBonus;
+            aimValue *= 1 + (approachRateFactor * 1.15) * lengthBonus;
         }
 
         if (!difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
             // AR scaling
             double approachRateFactor = 0;
             if (difficultyAttributes.approachRate > 10.33) {
-                approachRateFactor += 0.4 * (difficultyAttributes.approachRate - 10.33);
+                approachRateFactor += 0.45 * (difficultyAttributes.approachRate - 10.33);
             } else if (difficultyAttributes.approachRate < 8) {
-                approachRateFactor += 0.075 * (8 - difficultyAttributes.approachRate);
+                approachRateFactor += 0.0775 * (8 - difficultyAttributes.approachRate);
             }
 
-            aimValue *= 1.1 + (approachRateFactor * 1.1) * (lengthBonus * 0.05);
+            aimValue *= 1.1 + (approachRateFactor * 1.15) * (lengthBonus * 0.075);
         }
 
         // We want to give more reward for lower AR when it comes to aim and HD. This nerfs high AR and buffs lower AR.
