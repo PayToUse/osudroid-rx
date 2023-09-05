@@ -81,7 +81,7 @@ public class AutoCursor extends CursorEntity implements ISliderListener {
 
         currentObjectId = object.getId();
         if (GameHelper.ms2ar(approachRate * 1000f) > 12f) {
-            approachRate *= 500f;
+            approachRate *= 250f;
         } else if (GameHelper.ms2ar(approachRate * 1000f) > 10f) {
             approachRate *= 2f;
         }
