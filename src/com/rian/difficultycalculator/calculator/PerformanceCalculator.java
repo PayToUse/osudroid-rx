@@ -10,7 +10,7 @@ import ru.nsu.ccfit.zuev.osu.game.mods.GameMod;
  * A performance calculator for calculating performance points.
  */
 public class PerformanceCalculator {
-    public static final double finalMultiplier = 1.14;
+    public static final double finalMultiplier = 1.145;
 
     /**
      * The difficulty attributes being calculated.
@@ -64,7 +64,7 @@ public class PerformanceCalculator {
         }
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
-            // Making the PP get atleast a reward for Precise (because there's no effect, it just makes the game difficult)
+            // Making the PP get atleast a reward for Precise (because there's no effect, it just makes the game difficult without any changes to pp)
             multiplier *= 1.175;
         }
 
@@ -85,7 +85,7 @@ public class PerformanceCalculator {
         attributes.flashlight = calculateFlashlightValue();
 
         attributes.total = Math.pow(
-                Math.pow(attributes.aim, 1.1) +
+                Math.pow(attributes.aim, 1.1125) +
                         Math.pow(attributes.speed, 1.125) +
                         Math.pow(attributes.accuracy, 1.125) +
                         Math.pow(attributes.flashlight, 1.1),
@@ -113,7 +113,7 @@ public class PerformanceCalculator {
      * Calculates the accuracy of the parameters.
      */
     private double getAccuracy() {
-        return (double) (countGreat * 6.6 + countOk * 2.28 + countMeh) / (getTotalHits() * 6);
+        return (double) (countGreat * 5.25 + countOk * 1.4 + countMeh) / (getTotalHits() * 6);
     }
 
     /**
@@ -146,9 +146,9 @@ public class PerformanceCalculator {
         double aimValue = Math.pow(5 * Math.max(1, difficultyAttributes.aimDifficulty / 0.0675) - 4, 3) / 100000;
 
         // Longer maps are worth more
-        double lengthBonus = 0.955 + 0.425 * Math.min(1, getTotalHits() / 2000d);
+        double lengthBonus = 0.9575 + 0.495 * Math.min(1, getTotalHits() / 2000d);
         if (getTotalHits() > 2000) {
-            lengthBonus += Math.log10(getTotalHits() / 2000d) * 0.6525;
+            lengthBonus += Math.log10(getTotalHits() / 2000d) * 0.6575;
         }
 
         aimValue *= lengthBonus;
@@ -164,13 +164,13 @@ public class PerformanceCalculator {
             // AR scaling
             double approachRateFactor = 0;
             if (difficultyAttributes.approachRate > 10.33) {
-                approachRateFactor += 0.3125 * (difficultyAttributes.approachRate - 10.33);
+                approachRateFactor += 0.325 * (difficultyAttributes.approachRate - 10.33);
             } else if (difficultyAttributes.approachRate < 8) {
-                approachRateFactor += 0.05 * (8 - difficultyAttributes.approachRate);
+                approachRateFactor += 0.075 * (8 - difficultyAttributes.approachRate);
             }
 
             // Buff for longer maps with high AR.
-            aimValue *= 1 + (approachRateFactor * 1.155) * lengthBonus;
+            aimValue *= 1 + (approachRateFactor * 1.16) * lengthBonus;
         }
 
         if (!difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
