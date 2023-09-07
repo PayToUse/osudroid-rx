@@ -70,7 +70,7 @@ public class PerformanceCalculator {
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
             // Reworking the PP for Relax (may not match with osu! stable or lazer)
-            multiplier *= Math.max(1.76, 1.3 - 0.5 * effectiveMissCount);
+            multiplier *= Math.max(1.775, 1.3 - 0.5 * effectiveMissCount);
             
             double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.0125) : 1);
             double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.025) : 1);
@@ -86,8 +86,8 @@ public class PerformanceCalculator {
 
         attributes.total = Math.pow(
                 Math.pow(attributes.aim, 1.11275) +
-                        Math.pow(attributes.speed, 1.125) +
-                        Math.pow(attributes.accuracy, 1.125) +
+                        Math.pow(attributes.speed, 1.15) +
+                        Math.pow(attributes.accuracy, 1.1575) +
                         Math.pow(attributes.flashlight, 1.1),
                 1 / 1.075
         ) * (multiplier * 1.1);
@@ -113,7 +113,7 @@ public class PerformanceCalculator {
      * Calculates the accuracy of the parameters.
      */
     private double getAccuracy() {
-        return (double) (countGreat * 5.275 + countOk * 1.45 + countMeh) / (getTotalHits() * 6);
+        return (double) (countGreat * 5.45 + countOk * 1.65 + countMeh) / (getTotalHits() * 6);
     }
 
     /**
@@ -146,7 +146,7 @@ public class PerformanceCalculator {
         double aimValue = Math.pow(5 * Math.max(1, difficultyAttributes.aimDifficulty / 0.0675) - 4, 3) / 100000;
 
         // Longer maps are worth more
-        double lengthBonus = 0.9575 + 0.495 * Math.min(1, getTotalHits() / 2000d);
+        double lengthBonus = 0.975 + 0.525 * Math.min(1, getTotalHits() / 2000d);
         if (getTotalHits() > 2000) {
             lengthBonus += Math.log10(getTotalHits() / 2000d) * 0.6575;
         }
