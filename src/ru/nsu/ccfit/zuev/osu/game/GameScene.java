@@ -812,6 +812,9 @@ public class GameScene implements IUpdateHandler, GameObjectListener,
         float multiplier = 1 + rawDifficulty / 10f + rawDrain / 10f;
         multiplier += (beatmapData.difficulty.cs - 3) / 4f;
 
+        // The maximum CS of osu!droid mapped to osu!standard is ~17.62.
+        multiplier += (Math.min(beatmapData.difficulty.cs, 17.62f) - 3) / 4f;
+
         stat.setDiffModifier(multiplier);
         stat.setMaxObjectsCount(lastTrack.getTotalHitObjectCount());
         stat.setMaxHighestCombo(lastTrack.getMaxCombo());
