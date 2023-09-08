@@ -70,10 +70,10 @@ public class PerformanceCalculator {
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
             // Reworking the PP for Relax (may not match with osu! stable or lazer)
-            multiplier *= Math.max(1.7775, 1.3 - 0.5 * effectiveMissCount);
+            multiplier *= Math.max(1.785, 1.3 - 0.5 * effectiveMissCount);
             
-            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.0125) : 1);
-            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.025) : 1);
+            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.006175) : 1);
+            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.0125) : 1);
         }
 
         PerformanceAttributes attributes = new PerformanceAttributes();
@@ -86,7 +86,7 @@ public class PerformanceCalculator {
 
         attributes.total = Math.pow(
                 Math.pow(attributes.aim, 1.11275) +
-                        Math.pow(attributes.speed, 1.15) +
+                        Math.pow(attributes.speed, 1.175) +
                         Math.pow(attributes.accuracy, 1.1575) +
                         Math.pow(attributes.flashlight, 1.1),
                 1 / 1.075
@@ -113,7 +113,7 @@ public class PerformanceCalculator {
      * Calculates the accuracy of the parameters.
      */
     private double getAccuracy() {
-        return (double) (countGreat * 5.45 + countOk * 1.65 + countMeh) / (getTotalHits() * 6);
+        return (double) (countGreat * 5.95 + countOk * 2.15 + countMeh) / (getTotalHits() * 6);
     }
 
     /**
@@ -146,9 +146,9 @@ public class PerformanceCalculator {
         double aimValue = Math.pow(5 * Math.max(1, difficultyAttributes.aimDifficulty / 0.0675) - 4, 3) / 100000;
 
         // Longer maps are worth more
-        double lengthBonus = 0.975 + 0.525 * Math.min(1, getTotalHits() / 2000d);
+        double lengthBonus = 0.975 + 0.535 * Math.min(1, getTotalHits() / 2000d);
         if (getTotalHits() > 2000) {
-            lengthBonus += Math.log10(getTotalHits() / 2000d) * 0.6575;
+            lengthBonus += Math.log10(getTotalHits() / 2000d) * 0.6625;
         }
 
         aimValue *= lengthBonus;
@@ -164,7 +164,7 @@ public class PerformanceCalculator {
             // AR scaling
             double approachRateFactor = 0;
             if (difficultyAttributes.approachRate > 10.33) {
-                approachRateFactor += 0.325 * (difficultyAttributes.approachRate - 10.33);
+                approachRateFactor += 0.345 * (difficultyAttributes.approachRate - 10.33);
             } else if (difficultyAttributes.approachRate < 8) {
                 approachRateFactor += 0.075 * (8 - difficultyAttributes.approachRate);
             }
