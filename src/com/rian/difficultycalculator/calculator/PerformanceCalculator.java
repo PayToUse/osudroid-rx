@@ -70,7 +70,7 @@ public class PerformanceCalculator {
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
             // Reworking the PP for Relax (may not match with osu! stable or lazer)
-            multiplier *= Math.max(1.775, 1.3 - 0.5 * effectiveMissCount);
+            multiplier *= Math.max(1.7775, 1.3 - 0.5 * effectiveMissCount);
             
             double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.0125) : 1);
             double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.025) : 1);
