@@ -33,7 +33,7 @@ public class OsuDroidReplayPack {
         outputStream.putNextEntry(new ZipEntry("entry.json"));
 
         JSONObject entryJson = new JSONObject();
-        entryJson.put("version", 2);
+        entryJson.put("version", 1);
         entryJson.put("replaydata", replay.toJSON());
 
         outputStream.write(entryJson.toString(2).getBytes());
