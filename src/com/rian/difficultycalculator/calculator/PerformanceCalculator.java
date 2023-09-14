@@ -72,8 +72,8 @@ public class PerformanceCalculator {
             // Reworking the PP for Relax (may not match with osu! stable or lazer)
             multiplier *= Math.max(1.785, 1.3 - 0.5 * effectiveMissCount);
             
-            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.006175) : 1);
-            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0.0125) : 1);
+            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0) : 1);
+            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0) : 1);
         }
 
         PerformanceAttributes attributes = new PerformanceAttributes();
@@ -85,9 +85,9 @@ public class PerformanceCalculator {
         attributes.flashlight = calculateFlashlightValue();
 
         attributes.total = Math.pow(
-                Math.pow(attributes.aim, 1.11275) +
-                        Math.pow(attributes.speed, 1.175) +
-                        Math.pow(attributes.accuracy, 1.1575) +
+                Math.pow(attributes.aim, 1.12) +
+                        Math.pow(attributes.speed, 1.1775) +
+                        Math.pow(attributes.accuracy, 1.155) +
                         Math.pow(attributes.flashlight, 1.1),
                 1 / 1.075
         ) * (multiplier * 1.1);
