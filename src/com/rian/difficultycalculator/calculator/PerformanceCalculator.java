@@ -70,7 +70,7 @@ public class PerformanceCalculator {
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
             // Reworking the PP for Relax (may not match with osu! stable or lazer)
-            multiplier *= Math.max(1.785, 1.3 - 0.5 * effectiveMissCount);
+            multiplier *= Math.max(1.75, 1.3 - 0.5 * effectiveMissCount);
             
             double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0) : 1);
             double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0) : 1);
@@ -85,9 +85,9 @@ public class PerformanceCalculator {
         attributes.flashlight = calculateFlashlightValue();
 
         attributes.total = Math.pow(
-                Math.pow(attributes.aim, 1.12) +
-                        Math.pow(attributes.speed, 1.1775) +
-                        Math.pow(attributes.accuracy, 1.155) +
+                Math.pow(attributes.aim, 1.15) +
+                        Math.pow(attributes.speed, 1.185) +
+                        Math.pow(attributes.accuracy, 1.17) +
                         Math.pow(attributes.flashlight, 1.1),
                 1 / 1.075
         ) * (multiplier * 1.1);
@@ -113,7 +113,7 @@ public class PerformanceCalculator {
      * Calculates the accuracy of the parameters.
      */
     private double getAccuracy() {
-        return (double) (countGreat * 5.95 + countOk * 2.15 + countMeh) / (getTotalHits() * 6);
+        return (double) (countGreat * 6.15 + countOk * 2.35 + countMeh) / (getTotalHits() * 6);
     }
 
     /**
@@ -155,7 +155,7 @@ public class PerformanceCalculator {
 
         if (effectiveMissCount > 0) {
             // Penalize misses by assessing # of misses relative to the total # of objects. Default a 3% reduction for any # of misses.
-            aimValue *= 1 * Math.pow(1 - Math.pow(effectiveMissCount / getTotalHits(), 0.8), effectiveMissCount);
+            aimValue *= 1.1 * Math.pow(1 - Math.pow(effectiveMissCount / getTotalHits(), 0.8), effectiveMissCount);
         }
 
         aimValue *= getComboScalingFactor();
@@ -164,13 +164,13 @@ public class PerformanceCalculator {
             // AR scaling
             double approachRateFactor = 0;
             if (difficultyAttributes.approachRate > 10.33) {
-                approachRateFactor += 0.345 * (difficultyAttributes.approachRate - 10.33);
+                approachRateFactor += 0.4 * (difficultyAttributes.approachRate - 10.33);
             } else if (difficultyAttributes.approachRate < 8) {
                 approachRateFactor += 0.075 * (8 - difficultyAttributes.approachRate);
             }
 
             // Buff for longer maps with high AR.
-            aimValue *= 1 + (approachRateFactor * 1.16) * lengthBonus;
+            aimValue *= 1.1 + (approachRateFactor * 1.16) * lengthBonus;
         }
 
         if (!difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
