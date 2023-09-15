@@ -717,7 +717,7 @@ public class StatisticV2 implements Serializable {
         if (totalOffsetSum > 1) {
             float avgOffset = hitOffsetSum / totalOffsetSum;
 
-            unstableRate = 10 * (float) Math.sqrt(
+            unstableRate = 2.5 * (float) Math.sqrt(
                 ((totalOffsetSum - 1) * Math.pow(unstableRate / 10, 2) +
                     (msAccuracy - avgOffset / totalOffsetSum) * (msAccuracy - (avgOffset - msAccuracy) / (totalOffsetSum - 1))) / totalOffsetSum
             );
