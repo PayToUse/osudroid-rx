@@ -1,7 +1,7 @@
 # osudroid!relax
 
 ![logo](https://media.discordapp.net/attachments/792900587887919114/1127174982754107483/Untitled164_20230708175009.png)
-[![Official International Discord](https://discordapp.com/api/guilds/774138960430759958/widget.png?style=shield)](https://discord.gg/bppaHBZXFB)
+[![Official International Discord](https://discordapp.com/api/guilds/1095653998389907468/widget.png?style=shield)](https://discord.gg/kUaSggQP7m)
 [![Android CI](https://github.com/PayToUse/osudroid-rx/workflows/Android%20CI/badge.svg?branch=master)](https://github.com/PayToUse/osudroid-rx/actions?query=workflow%3A"Android+CI")
 ![GitHub repo size](https://img.shields.io/github/repo-size/PayToUse/osudroid-rx?style=flat-square&label=Repository%20Size)
 ![GitHub contributors](https://img.shields.io/github/contributors/PayToUse/osudroid-rx?style=flat-square&label=Project%20contributors)
