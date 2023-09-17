@@ -70,7 +70,7 @@ public class PerformanceCalculator {
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
             // Reworking the PP for Relax (may not match with osu! stable or lazer)
-            multiplier *= Math.max(1.15, 1.3 - 0.5 * effectiveMissCount);
+            multiplier *= Math.max(1.175, 1.3 - 0.5 * effectiveMissCount);
             
             double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0) : 1);
             double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0) : 1);
@@ -85,9 +85,9 @@ public class PerformanceCalculator {
         attributes.flashlight = calculateFlashlightValue();
 
         attributes.total = Math.pow(
-                Math.pow(attributes.aim, 1.2) +
-                        Math.pow(attributes.speed, 1.2) +
-                        Math.pow(attributes.accuracy, 1.2) +
+                Math.pow(attributes.aim, 1.175) +
+                        Math.pow(attributes.speed, 1.175) +
+                        Math.pow(attributes.accuracy, 1.175) +
                         Math.pow(attributes.flashlight, 1.1),
                 1 / 1.075
         ) * (multiplier * 1.1);
