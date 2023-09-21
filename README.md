@@ -23,17 +23,17 @@ osu! is a free-to-play circle clicking rhythm game for Windows, MacOS and Linux.
 This game took inspiration from iNiS' Osu! Tatakae Ouendan for the Nintendo DS.
 
 ## All about this relax server
-osudroid!relax is an experimental and unofficial custom build of osu!droid, which allows you to submit scores using the relax mod on a new server.
+osudroid!relax is an experimental and unofficial custom build of osu!droid, but the server is not implemented yet so it will remain on beta.
 
 The main purpose why i renamed this to **osudroid!relax** is because i wanted to make my own build of osu!droid, which is for my youtube videos.
 
-Currently, the game has a bunch of bugs, which might replicate in-game.
+Currently, the game has a bunch of bugs, which might be replicable in-game.
 
 ## Features
-This custom build features a rework for performance points (pp), which only affects with the relax mod applied, alongside the experimental settings that would likely not work, further game optimization, and smaller playfield areas, *that could just make the phone like a tablet*.
+This custom build features a rework for performance points (pp), which only affects with the relax mod applied, alongside the experimental settings that would likely not work, further game optimization, and smaller playfield areas, *that could just make it playable like a tablet, so bring a stylus with you*.
 
 ## Note
-Please take note that this is not akatsuki, but on android. I made this project for testing purposes if it works on another server. If you want to visit the webpage, you can also [click here](https://akatsuki.gg) if you want to.
+Please take note that this is not akatsuki, but on android. I made this project for testing purposes anyway. If you want to visit it's own webpage, you can also [click here](https://akatsuki.gg) if you want to.
 
 Older builds based on older versions of the game are completely outdated, so please update the game to it's latest version, thank you!
 
@@ -48,19 +48,20 @@ We had this release table for every version of the custom build
 | v1.3 | 1.6.8 |
 | v1.4 | 1.7 |
 | v1.5 | 1.7 |
-| v1.6 | ???? |
+| v1.6 | 1.7 |
+| v1.7 | ???? |
 
 ## Status
 osudroid!relax is currently in development, it's updates are up to date with the osu!droid github repository, *except for the server*
 
-currently, the server is not implemented yet, so for now, logging in will no longer be available until it's done implementing
+currently, the server is not implemented yet, so for now, logging in will no longer be available until the server will be done implementing
 
-if you want to test the latest debug builds before the release, please [click here](https://github.com/PayToUse/osudroid-rx/actions) to view the latest updates being made alongside the build.
+if you want to test the latest debug builds before the game's release, you can [click here](https://github.com/PayToUse/osudroid-rx/actions) to view the latest updates / changes being made to the build.
 
 ## Contributing
 
-Any contributions are free, and the github workflow will start to build the `.apk` once a commit has been done, you should wait and the build will be done with the commit you currently included, so don't worry.
+Any contributions are free, and the **Android CI** workflow will start to build the `.apk` once a commit has been done, you should wait for a couple of minutes and the build will be done assembling with the commit you currently included, so don't worry.
 
 ## License
 
-osudroid!relax is licensed under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0) license
+osudroid!relax is licensed under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0) license, you can click to view the details.
