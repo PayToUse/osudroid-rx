@@ -188,7 +188,7 @@ public class MainScene implements IUpdateHandler {
                 .getInstance().getFont("font"),
                 String.format(
                         Locale.getDefault(),
-                        "osu!droid %s\nby osu!droid Team\nosu! is \u00a9 peppy 2007-2023",
+                        "osudroid!relax v1.8\nBy the osu!droid Team & PayToUse (LouieNotHere)\nosu! is \u00a9 peppy 2007-2023",
                         BuildConfig.VERSION_NAME + " (" + BuildConfig.BUILD_TYPE + ")"
                         )) {
 
@@ -214,7 +214,7 @@ public class MainScene implements IUpdateHandler {
 
         final Text yasonline = new Text(720, 530, ResourceManager
                 .getInstance().getFont("font"),
-                "            Global Ranking\n   Provided by iBancho") {
+                "   Based on osu!droid 1.7.1\n            Global Ranking\n   Provided by iBancho") {
 
             @Override
             public boolean onAreaTouched(final TouchEvent pSceneTouchEvent,
