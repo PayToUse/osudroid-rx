@@ -2,9 +2,11 @@ name: Android CI
 
 on:
   push:
-    branches: [ master ]
+    branches-ignore:
+      - 'flashlight-experiment'
   pull_request:
-    branches: [ master ]
+    branches-ignore:
+      - 'flashlight-experiment'
 
 jobs:
   build:
@@ -20,8 +22,10 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-
-    - name: Build apk
-      uses: gradle/gradle-build-action@v2
+    - name: Assemble the Debug .apk
+      run: ./gradlew assembleDebug
+    - name: Create and Release the Debug artifact
+      uses: actions/upload-artifact@v3
       with:
-        arguments: build
+        name: osudroid-rx-debug
+        path: build/outputs/apk/debug/app-debug.apk
