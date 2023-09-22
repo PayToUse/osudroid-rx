@@ -38,7 +38,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:764431452338:android:7171a1f6028e2ac37d21ab",
         "android_client_info": {
-          "package_name": "ru.nsu.ccfit.zuev.osuplus.debug"
+          "package_name": "ru.nsu.ccfit.zuev.osuplus.rxdebug"
         }
       },
       "oauth_client": [
