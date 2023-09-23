@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="bg_quality_names">
+        <item>Ultra</item>
+        <item>Highest</item>
+        <item>Higher</item>
         <item>High</item>
-        <item>Medium</item>
-        <item>Low</item>
-        <item>Disabled</item>
+	<item>Medium</item>
+	<item>Low</item>
+	<item>Lower</item>
+	<item>Lowest</item>
+	<item>Potato</item>
     </string-array>
     <string-array name="bg_quality_values">
         <item>1</item>
         <item>2</item>
+        <item>3</item>
         <item>4</item>
-        <item>0</item>
+	<item>5</item>
+	<item>6</item>
+	<item>10</item>
+	<item>14</item>
+	<item>18</item>
     </string-array>
     <!-- <string-array name="bg_brightness_names">
         <item>100%</item>
