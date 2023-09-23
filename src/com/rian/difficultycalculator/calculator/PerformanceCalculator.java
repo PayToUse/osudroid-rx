@@ -86,8 +86,8 @@ public class PerformanceCalculator {
 
         attributes.total = Math.pow(
                 Math.pow(attributes.aim, 1.2) +
-                        Math.pow(attributes.speed, 1.225) +
-                        Math.pow(attributes.accuracy, 1.175) +
+                        Math.pow(attributes.speed, 1.2) +
+                        Math.pow(attributes.accuracy, 1.2) +
                         Math.pow(attributes.flashlight, 1.1),
                 1 / 1.075
         ) * (multiplier * 1.1);
