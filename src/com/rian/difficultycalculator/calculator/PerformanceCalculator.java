@@ -169,8 +169,8 @@ public class PerformanceCalculator {
                 approachRateFactor += 0.075 * (8 - difficultyAttributes.approachRate);
             }
 
-            // Buff for longer maps with high AR.
-            aimValue *= 1.1 + (approachRateFactor * 1.16) * lengthBonus;
+            // Buff for longer maps with high AR along with the aim value.
+            aimValue *= 1.225 + (approachRateFactor * 1.16) * lengthBonus;
         }
 
         if (!difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
