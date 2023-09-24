@@ -86,8 +86,8 @@ public class PerformanceCalculator {
 
         attributes.total = Math.pow(
                 Math.pow(attributes.aim, 1.2) +
-                        Math.pow(attributes.speed, 1.2) +
-                        Math.pow(attributes.accuracy, 1.2) +
+                        Math.pow(attributes.speed, 1.15) +
+                        Math.pow(attributes.accuracy, 1.175) +
                         Math.pow(attributes.flashlight, 1.1),
                 1 / 1.075
         ) * (multiplier * 1.075);
@@ -175,17 +175,13 @@ public class PerformanceCalculator {
             // Buff for longer maps with high AR.
             aimValue *= 1.1 + (approachRateFactor * 1.16) * lengthBonus;
         }
+        
+        if (!difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETIME)) {
+            aimValue *= 1.45;
+        }
 
         if (!difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
-            // AR scaling
-            double approachRateFactor = 0;
-            if (difficultyAttributes.approachRate > 10.33) {
-                approachRateFactor += 0.45 * (difficultyAttributes.approachRate - 10.33);
-            } else if (difficultyAttributes.approachRate < 8) {
-                approachRateFactor += 0.07775 * (8 - difficultyAttributes.approachRate);
-            }
-
-            aimValue *= 1.1 + (approachRateFactor * 1.15) * (lengthBonus * 0.0735);
+            aimValue *= 1.15;
         }
 
         // We want to give more reward for lower AR when it comes to aim and HD. This nerfs high AR and buffs lower AR.
@@ -213,7 +209,11 @@ public class PerformanceCalculator {
 
     private double calculateSpeedValue() {
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
-            return 0;
+            speedValue *= 1.1;
+        }
+
+        if (difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETIME)) {
+            speedValue *= 1.25;
         }
 
         double speedValue = Math.pow(5 * Math.max(1, difficultyAttributes.speedDifficulty / 0.06775) - 4, 3) / 100000;
@@ -286,6 +286,11 @@ public class PerformanceCalculator {
         if (difficultyAttributes.mods.contains(GameMod.MOD_HIDDEN)) {
             accuracyValue *= 1.08;
         }
+
+        if (difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETIME)) {
+            accuracyValue *= 1.15;
+        }
+        
         if (difficultyAttributes.mods.contains(GameMod.MOD_FLASHLIGHT)) {
             accuracyValue *= 1.02;
         }
