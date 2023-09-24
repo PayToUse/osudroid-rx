@@ -212,10 +212,6 @@ public class PerformanceCalculator {
             speedValue *= 1.1;
         }
 
-        if (difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETIME)) {
-            speedValue *= 1.25;
-        }
-
         double speedValue = Math.pow(5 * Math.max(1, difficultyAttributes.speedDifficulty / 0.06775) - 4, 3) / 100000;
 
         // Longer maps are worth more
