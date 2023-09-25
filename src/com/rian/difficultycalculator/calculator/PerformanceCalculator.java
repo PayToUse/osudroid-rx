@@ -177,7 +177,7 @@ public class PerformanceCalculator {
         }
         
         if (!difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETIME)) {
-            aimValue *= 1.45;
+            aimValue *= 1.25;
         }
 
         if (!difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
@@ -237,6 +237,10 @@ public class PerformanceCalculator {
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
             speedValue *= 1.1 * (difficultyAttributes.approachRate / 1.75);
+        }
+
+        if (difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETTIME)) {
+            speedValue *= 1.3;
         }
 
         // Calculate accuracy assuming the worst case scenario.
