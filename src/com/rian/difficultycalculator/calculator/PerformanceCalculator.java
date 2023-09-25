@@ -239,10 +239,6 @@ public class PerformanceCalculator {
             speedValue *= 1.1 * (difficultyAttributes.approachRate / 1.75);
         }
 
-        if (difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETTIME)) {
-            speedValue *= 1.3 * (difficultyAttributes.approachRate);
-        }
-
         // Calculate accuracy assuming the worst case scenario.
         double relevantTotalDiff = getTotalHits() - difficultyAttributes.speedNoteCount;
         double relevantCountGreat = Math.max(0, countGreat - relevantTotalDiff);
