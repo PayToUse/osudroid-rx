@@ -240,7 +240,7 @@ public class PerformanceCalculator {
         }
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETTIME)) {
-            speedValue *= 1.3;
+            speedValue *= 1.3 * (difficultyAttributes.approachRate);
         }
 
         // Calculate accuracy assuming the worst case scenario.
