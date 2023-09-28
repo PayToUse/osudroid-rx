@@ -10,7 +10,7 @@ import ru.nsu.ccfit.zuev.osu.game.mods.GameMod;
  * A performance calculator for calculating performance points.
  */
 public class PerformanceCalculator {
-    public static final double finalMultiplier = 1.145;
+    public static final double finalMultiplier = 1.14;
 
     /**
      * The difficulty attributes being calculated.
@@ -63,19 +63,6 @@ public class PerformanceCalculator {
             multiplier *= Math.max(0.9, 1 - 0.02 * effectiveMissCount);
         }
 
-        if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
-            // Making the PP get atleast a reward for Precise (because there's no effect, it just makes the game difficult without any changes to pp)
-            multiplier *= 1.175;
-        }
-
-        if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
-            // Reworking the PP for Relax (may not match with osu! stable or lazer)
-            multiplier *= Math.max(1, 1.3 - 0.5 * effectiveMissCount);
-            
-            double okMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0) : 1);
-            double mehMultiplier = Math.max(0, difficultyAttributes.overallDifficulty > 0 ? 1 - Math.pow(difficultyAttributes.overallDifficulty / 13.33, 0) : 1);
-        }
-
         PerformanceAttributes attributes = new PerformanceAttributes();
 
         attributes.effectiveMissCount = effectiveMissCount;
@@ -85,12 +72,12 @@ public class PerformanceCalculator {
         attributes.flashlight = calculateFlashlightValue();
 
         attributes.total = Math.pow(
-                Math.pow(attributes.aim, 1.2) +
-                        Math.pow(attributes.speed, 1.15) +
-                        Math.pow(attributes.accuracy, 1.175) +
+                Math.pow(attributes.aim, 1.1) +
+                        Math.pow(attributes.speed, 1.1) +
+                        Math.pow(attributes.accuracy, 1.1) +
                         Math.pow(attributes.flashlight, 1.1),
-                1 / 1.075
-        ) * (multiplier * 1.075);
+                1 / 1.1
+        ) * multiplier;
 
         return attributes;
     }
@@ -113,7 +100,7 @@ public class PerformanceCalculator {
      * Calculates the accuracy of the parameters.
      */
     private double getAccuracy() {
-        return (double) (countGreat * 5.75 + countOk * 1.7 + countMeh) / (getTotalHits() * 6);
+        return (double) (countGreat * 6 + countOk * 2 + countMeh) / (getTotalHits() * 6);
     }
 
     /**
@@ -146,51 +133,27 @@ public class PerformanceCalculator {
         double aimValue = Math.pow(5 * Math.max(1, difficultyAttributes.aimDifficulty / 0.0675) - 4, 3) / 100000;
 
         // Longer maps are worth more
-        double lengthBonus = 1 + 0.55 * Math.min(1, getTotalHits() / 2000d);
+        double lengthBonus = 0.95 + 0.4 * Math.min(1, getTotalHits() / 2000d);
         if (getTotalHits() > 2000) {
-            lengthBonus += Math.log10(getTotalHits() / 2000d) * 0.67;
+            lengthBonus += Math.log10(getTotalHits() / 2000d) * 0.5;
         }
 
         aimValue *= lengthBonus;
 
         if (effectiveMissCount > 0) {
             // Penalize misses by assessing # of misses relative to the total # of objects. Default a 3% reduction for any # of misses.
-            aimValue *= 1.1 * Math.pow(1 - Math.pow(effectiveMissCount / getTotalHits(), 0.8), effectiveMissCount);
+            aimValue *= 0.97 * Math.pow(1 - Math.pow(effectiveMissCount / getTotalHits(), 0.775), effectiveMissCount);
         }
 
         aimValue *= getComboScalingFactor();
 
-        if (!difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
-            // AR scaling
-            double approachRateFactor = 0;
-            if (difficultyAttributes.approachRate > 10.33) {
-                approachRateFactor += 0.4 * (difficultyAttributes.approachRate - 10.33);
-            } else if (difficultyAttributes.approachRate < 8) {
-                approachRateFactor += 0.075 * (8 - difficultyAttributes.approachRate);
-            }
-
-            // Buff the aim value higher
-            aimValue *= 1.275;
-            
-            // Buff for longer maps with high AR.
-            aimValue *= 1.1 + (approachRateFactor * 1.16) * lengthBonus;
-        }
-        
-        if (!difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETIME)) {
-            aimValue *= 1.25;
-        }
-
-        if (!difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
-            aimValue *= 1.15;
-        }
-
         // We want to give more reward for lower AR when it comes to aim and HD. This nerfs high AR and buffs lower AR.
         if (difficultyAttributes.mods.contains(GameMod.MOD_HIDDEN)) {
-            aimValue *= 1 + 0.045 * (12 - difficultyAttributes.approachRate);
+            aimValue *= 1 + 0.04 * (12 - difficultyAttributes.approachRate);
         }
 
         // We assume 15% of sliders in a map are difficult since there's no way to tell from the performance calculator.
-        double estimateDifficultSliders = difficultyAttributes.sliderCount * 0.1755;
+        double estimateDifficultSliders = difficultyAttributes.sliderCount * 0.15;
 
         if (estimateDifficultSliders > 0) {
             double estimateSliderEndsDropped = MathUtils.clamp(Math.min(countOk + countMeh + countMiss, difficultyAttributes.maxCombo - scoreMaxCombo), 0, estimateDifficultSliders);
@@ -202,16 +165,17 @@ public class PerformanceCalculator {
         aimValue *= getAccuracy();
 
         // It is also important to consider accuracy difficulty when doing that.
-        aimValue *= 0.975 + Math.pow(difficultyAttributes.overallDifficulty, 2) / 2500;
+        aimValue *= 0.98 + Math.pow(difficultyAttributes.overallDifficulty, 2) / 2500;
 
         return aimValue;
     }
 
     private double calculateSpeedValue() {
-        double speedValue = Math.pow(5 * Math.max(1, difficultyAttributes.speedDifficulty / 0.06775) - 4, 3) / 100000;
+
+        double speedValue = Math.pow(5 * Math.max(1, difficultyAttributes.speedDifficulty / 0.0675) - 4, 3) / 100000;
 
         // Longer maps are worth more
-        double lengthBonus = 0.925 + 0.375 * Math.min(1, getTotalHits() / 2000d);
+        double lengthBonus = 0.95 + 0.4 * Math.min(1, getTotalHits() / 2000d);
         if (getTotalHits() > 2000) {
             lengthBonus += Math.log10(getTotalSuccessfulHits() / 2000d) * 0.5;
         }
@@ -220,7 +184,7 @@ public class PerformanceCalculator {
 
         if (effectiveMissCount > 0) {
             // Penalize misses by assessing # of misses relative to the total # of objects. Default a 3% reduction for any # of misses.
-            speedValue *= 0.975 * Math.pow(1 - Math.pow(effectiveMissCount / getTotalHits(), 0.7725), Math.pow(effectiveMissCount, 0.8725));
+            speedValue *= 0.97 * Math.pow(1 - Math.pow(effectiveMissCount / getTotalHits(), 0.775), Math.pow(effectiveMissCount, 0.875));
         }
 
         speedValue *= getComboScalingFactor();
@@ -232,11 +196,7 @@ public class PerformanceCalculator {
         }
 
         if (difficultyAttributes.mods.contains(GameMod.MOD_HIDDEN)) {
-            speedValue *= 1 + 0.0375 * (12 - difficultyAttributes.approachRate);
-        }
-
-        if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
-            speedValue *= 1.1 * (difficultyAttributes.approachRate / 1.75);
+            speedValue *= 1 + 0.04 * (12 - difficultyAttributes.approachRate);
         }
 
         // Calculate accuracy assuming the worst case scenario.
@@ -256,9 +216,6 @@ public class PerformanceCalculator {
     }
 
     private double calculateAccuracyValue() {
-        if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
-            return 0;
-        }
 
         // This percentage only considers HitCircles of any value - in this part of the calculation we focus on hitting the timing hit window.
         double betterAccuracyPercentage = 0;
@@ -278,11 +235,6 @@ public class PerformanceCalculator {
         if (difficultyAttributes.mods.contains(GameMod.MOD_HIDDEN)) {
             accuracyValue *= 1.08;
         }
-
-        if (difficultyAttributes.mods.contains(GameMod.MOD_DOUBLETIME)) {
-            accuracyValue *= 1.15;
-        }
-        
         if (difficultyAttributes.mods.contains(GameMod.MOD_FLASHLIGHT)) {
             accuracyValue *= 1.02;
         }
@@ -339,4 +291,4 @@ public class PerformanceCalculator {
     private double getComboScalingFactor() {
         return difficultyAttributes.maxCombo <= 0 ? 0 : Math.min(Math.pow(scoreMaxCombo, 0.8) / Math.pow(difficultyAttributes.maxCombo, 0.8), 1);
     }
-                                                                 }
+}
