@@ -72,9 +72,9 @@ public class PerformanceCalculator {
         attributes.flashlight = calculateFlashlightValue();
 
         attributes.total = Math.pow(
-                Math.pow(attributes.aim, 1.125) +
-                        Math.pow(attributes.speed, 1.125) +
-                        Math.pow(attributes.accuracy, 1.05) +
+                Math.pow(attributes.aim, 1.1125) +
+                        Math.pow(attributes.speed, 1.1125) +
+                        Math.pow(attributes.accuracy, 1.075) +
                         Math.pow(attributes.flashlight, 1.1),
                 1 / 1.1
         ) * multiplier;
