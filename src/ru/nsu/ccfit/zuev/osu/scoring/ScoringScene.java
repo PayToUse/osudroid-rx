@@ -385,7 +385,12 @@ public class ScoringScene {
                     .getInstance().getTexture("selection-mod-relax2"));
             modX -= Utils.toRes(30);
             scene.attachChild(modSprite);
-        }
+        } else if (stat.getMod().contains(GameMod.MOD_RELAX)) {
+            final Sprite modSprite = new Sprite(modX, modY, ResourceManager
+                    .getInstance().getTexture("selection-mod-relax"));
+            modX -= Utils.toRes(30);
+            scene.attachChild(modSprite);
+        } 
         if (stat.getMod().contains(GameMod.MOD_DOUBLETIME)) {
             final Sprite modSprite = new Sprite(modX, modY, ResourceManager
                     .getInstance().getTexture("selection-mod-doubletime"));
