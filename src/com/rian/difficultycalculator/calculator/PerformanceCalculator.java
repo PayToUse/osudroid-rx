@@ -100,7 +100,7 @@ public class PerformanceCalculator {
      * Calculates the accuracy of the parameters.
      */
     private double getAccuracy() {
-        return (double) (countGreat * 4.75 + countOk * 1.675 + countMeh) / (getTotalHits() * 6);
+        return (double) (countGreat * 6 + countOk * 2 + countMeh) / (getTotalHits() * 6);
     }
 
     /**
