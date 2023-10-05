@@ -50,7 +50,8 @@ We had this release table for every version of the custom build
 | v1.5 | 1.7 |
 | v1.6 | 1.7 |
 | v1.7 | Skipped |
-| v1.8 | ???? |
+| v1.8 | 1.7.1 |
+| v1.9 | ???? |
 
 ## Status
 osudroid!relax is currently in development, it's updates are up to date with the osu!droid github repository, *except for the server*
