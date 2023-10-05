@@ -63,7 +63,7 @@ public class PerformanceCalculator {
             multiplier *= Math.max(0.9, 1 - 0.02 * effectiveMissCount);
         }
         if (difficultyAttributes.mods.contains(GameMod.MOD_RELAX)) {
-            multiplier *= 1.05;
+            multiplier *= 1.025;
         }
         PerformanceAttributes attributes = new PerformanceAttributes();
 
