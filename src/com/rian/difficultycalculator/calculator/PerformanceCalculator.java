@@ -240,6 +240,9 @@ public class PerformanceCalculator {
         if (difficultyAttributes.mods.contains(GameMod.MOD_FLASHLIGHT)) {
             accuracyValue *= 1.02;
         }
+        if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
+            accuracyValue *= 1.1;
+        }
 
         return accuracyValue;
     }
