@@ -241,7 +241,7 @@ public class PerformanceCalculator {
             accuracyValue *= 1.02;
         }
         if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
-            accuracyValue *= 1.1;
+            accuracyValue *= 1.25;
         }
 
         return accuracyValue;
