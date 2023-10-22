@@ -154,6 +154,10 @@ public class PerformanceCalculator {
             aimValue *= 1 + 0.04 * (12 - difficultyAttributes.approachRate);
         }
 
+        if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
+            aimValue *= 1.15;
+        }
+
         // We assume 15% of sliders in a map are difficult since there's no way to tell from the performance calculator.
         double estimateDifficultSliders = difficultyAttributes.sliderCount * 0.15;
 
@@ -200,6 +204,9 @@ public class PerformanceCalculator {
         if (difficultyAttributes.mods.contains(GameMod.MOD_HIDDEN)) {
             speedValue *= 1 + 0.04 * (12 - difficultyAttributes.approachRate);
         }
+        if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
+            speedValue *= 1.1;
+        }
 
         // Calculate accuracy assuming the worst case scenario.
         double relevantTotalDiff = getTotalHits() - difficultyAttributes.speedNoteCount;
@@ -241,7 +248,7 @@ public class PerformanceCalculator {
             accuracyValue *= 1.02;
         }
         if (difficultyAttributes.mods.contains(GameMod.MOD_PRECISE)) {
-            accuracyValue *= 1.25;
+            accuracyValue *= 1.275;
         }
 
         return accuracyValue;
