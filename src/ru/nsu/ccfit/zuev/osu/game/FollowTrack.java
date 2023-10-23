@@ -42,7 +42,7 @@ public class FollowTrack extends GameObject {
         if (region == null) {
             region = ResourceManager.getInstance().getTexture("followpoint");
         }
-        final float pointSize = region.getWidth() * scale;
+        final float pointSize = (region.getWidth() * scale) / 2;
         int count = (int) ((dist - 64 * scale) / pointSize);
         if (count > 0) {
             count--;
