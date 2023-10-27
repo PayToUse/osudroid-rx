@@ -53,6 +53,22 @@ We had this release table for every version of the custom build
 | v1.8 | 1.7.1 |
 | v1.9 | ???? |
 
+## Ranking
+While v1.9 is currently being worked on, I had made some changes to ranking and now it accords to it's accuracy
+
+Don't believe me? Here is a table to show how it works
+
+| Rank | Accuracy |
+|--------|--------|
+| SS | 100% |
+| S | 95% |
+| A | 90% |
+| B | 80% |
+| C | 75% |
+| D | Less than 75% |
+
+For instance, if your accuracy is above 95%, you'll get an S according to the table. Another example, if your accuracy is below 75%, you'll get a D.
+
 ## Status
 osudroid!relax is currently in development, it's updates are up to date with the osu!droid github repository, *except for the server*
 
