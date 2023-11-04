@@ -70,9 +70,9 @@ public class StatisticV2 implements Serializable {
     public boolean canFail = true;
 
     /**
-     * The score multiplier from mods.
+     * The score multiplier accounting for ranked mods.
      */
-    private float modScoreMultiplier = 1;
+    private float rankedScoreMultiplier = 1;
 
 
     public StatisticV2() {
@@ -104,7 +104,7 @@ public class StatisticV2 implements Serializable {
         diffModifier = stat.diffModifier;
         mod = stat.mod.clone();
         setPlayerName(Config.getLocalUsername());
-        computeModScoreMultiplier();
+        computeRankedScoreMultiplier();
     }
 
     public StatisticV2(final String[] params) {
@@ -131,7 +131,7 @@ public class StatisticV2 implements Serializable {
         if (params.length >= 14) {
             playerName = params[13];
         }
-        computeModScoreMultiplier();
+        computeRankedScoreMultiplier();
     }
 
     public float getHp() {
@@ -156,11 +156,21 @@ public class StatisticV2 implements Serializable {
         return totalScore;
     }
 
-    public int getTotalScoreWithMultiplier() {
+    public int getModifiedTotalScore() {
         if (forcedScore > 0)
             return forcedScore;
+        float mult = 1;
+        for (GameMod m : mod) {
+            mult *= m.scoreMultiplier;
+        }
+        if (changeSpeed != 1.0f) {
+            mult *= getSpeedChangeScoreMultiplier();
+        }
+        return (int) (totalScore * mult);
+    }
 
-        return (int) (totalScore * modScoreMultiplier);
+    public int getAutoTotalScore() {
+        return (int) (totalScore * rankedScoreMultiplier);
     }
 
     public void registerSpinnerHit() {
@@ -458,7 +468,7 @@ public class StatisticV2 implements Serializable {
     public void setMod(final EnumSet<GameMod> mod) {
         this.mod = mod.clone();
 
-        computeModScoreMultiplier();
+        computeRankedScoreMultiplier();
     }
 
     public float getDiffModifier() {
@@ -597,7 +607,7 @@ public class StatisticV2 implements Serializable {
         if (strMod.length > 1)
             setExtraModFromString(strMod[1]);
 
-        computeModScoreMultiplier();
+        computeRankedScoreMultiplier();
     }
 
     public String getReplayName() {
@@ -632,7 +642,7 @@ public class StatisticV2 implements Serializable {
             mstring = "-";
         builder.append(mstring);
         builder.append(' ');
-        builder.append(getTotalScoreWithMultiplier());
+        builder.append(getModifiedTotalScore());
         builder.append(' ');
         builder.append(getMaxCombo());
         builder.append(' ');
@@ -674,7 +684,7 @@ public class StatisticV2 implements Serializable {
     public void setChangeSpeed(float speed){
         changeSpeed = speed;
 
-        computeModScoreMultiplier();
+        computeRankedScoreMultiplier();
     }
 
     public float getForceAR(){
@@ -806,7 +816,7 @@ public class StatisticV2 implements Serializable {
             }
         }
 
-        computeModScoreMultiplier();
+        computeRankedScoreMultiplier();
     }
 
     /**
@@ -816,7 +826,7 @@ public class StatisticV2 implements Serializable {
         return new JSONObject() {{
             try {
                 put("accuracy", getAccuracyForServer());
-                put("score", getTotalScoreWithMultiplier());
+                put("score", getTotalScore());
                 put("username", playerName);
                 put("modstring", getModString());
                 put("maxCombo", maxCombo);
@@ -841,18 +851,22 @@ public class StatisticV2 implements Serializable {
         //noinspection DataFlowIssue
         var combo = !Multiplayer.isConnected || Multiplayer.room.getWinCondition() != WinCondition.MAX_COMBO ? currentCombo : maxCombo;
 
-        return new ScoreBoardItem(playerName, getTotalScoreWithMultiplier(), combo, getAccuracyForServer(), isAlive);
+        return new ScoreBoardItem(playerName, getModifiedTotalScore(), combo, getAccuracyForServer(), isAlive);
     }
 
-    private void computeModScoreMultiplier() {
-        modScoreMultiplier = 1;
+    private void computeRankedScoreMultiplier() {
+        rankedScoreMultiplier = 1;
 
         for (GameMod m : mod) {
-            modScoreMultiplier *= m.scoreMultiplier;
+            if (m.unranked) {
+                continue;
+            }
+
+            rankedScoreMultiplier *= m.scoreMultiplier;
         }
 
         if (changeSpeed != 1f) {
-            modScoreMultiplier *= getSpeedChangeScoreMultiplier();
+            rankedScoreMultiplier *= getSpeedChangeScoreMultiplier();
         }
     }
-    }
+                }
