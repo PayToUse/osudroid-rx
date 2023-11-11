@@ -56,7 +56,7 @@ We had this release table for every version of the custom build
 | v1.9 | ???? |
 
 ## Ranking
-While v1.9 is currently being worked on, I had made some changes to ranking and now it accords to it's accuracy
+While v1.9 is currently being worked on, I had made some changes to ranking and now it accords to it's accuracy, but this will be affected on future builds.
 
 Don't believe me? Here is a table to show how it works
 
