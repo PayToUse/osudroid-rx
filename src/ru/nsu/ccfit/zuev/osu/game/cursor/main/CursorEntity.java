@@ -28,7 +28,7 @@ public class CursorEntity extends Entity {
             particleOffsetX = -trailTex.getWidth() / 2f;
             particleOffsetY = -trailTex.getHeight() / 2f;
 
-            var spawnRate = 35;
+            var spawnRate = 45;
 
             emitter = new PointParticleEmitter(particleOffsetX, particleOffsetY);
             particles = new CursorTrail(emitter, spawnRate, cursorSprite.baseSize, trailTex);
