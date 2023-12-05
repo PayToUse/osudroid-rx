@@ -92,7 +92,7 @@ public class OnlinePanel extends Entity {
                 ResourceManager.getInstance().getFont("CaptionFont"), "Guest", 16);
         onlineLayer.attachChild(nameText);
         scoreText = new ChangeableText(Utils.toRes(120), Utils.toRes(50),
-                ResourceManager.getInstance().getFont("smallFont"), "Score: 0",
+                ResourceManager.getInstance().getFont("smallFont"), "Performance: 0pp",
                 HorizontalAlign.LEFT, 22);
         scoreText.setColor(0.85f, 0.85f, 0.9f);
         onlineLayer.attachChild(scoreText);
@@ -127,7 +127,7 @@ public class OnlinePanel extends Entity {
 
     public void setInfo() {
         nameText.setText(OnlineManager.getInstance().getUsername());
-        StringBuilder scoreBuilder = new StringBuilder("Score: ");
+        StringBuilder scoreBuilder = new StringBuilder("Performance:");
         scoreBuilder.append(OnlineManager.getInstance().getScore());
         for (int i = scoreBuilder.length() - 3; i > 7; i -= 3) {
             scoreBuilder.insert(i, ' ');
